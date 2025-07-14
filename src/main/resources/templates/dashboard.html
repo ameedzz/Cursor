@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Secure Area</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1>Dashboard</h1>
+                <div class="user-info">
+                    <span>Welcome, <strong sec:authentication="name">User</strong>!</span>
+                    <form th:action="@{/logout}" method="post" style="display: inline;">
+                        <button type="submit" class="logout-btn">Logout</button>
+                    </form>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <div class="content-grid">
+                <div class="card">
+                    <h3>🎉 Login Successful!</h3>
+                    <p>You have successfully logged into the secure area of the application.</p>
+                </div>
+
+                <div class="card">
+                    <h3>👤 User Information</h3>
+                    <div class="user-details">
+                        <p><strong>Username:</strong> <span sec:authentication="name">User</span></p>
+                        <p><strong>Authorities:</strong> <span sec:authentication="authorities">[ROLE_USER]</span></p>
+                        <p><strong>Session:</strong> Active</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>🔒 Security Features</h3>
+                    <ul>
+                        <li>✅ Authentication required</li>
+                        <li>✅ Password encryption</li>
+                        <li>✅ Session management</li>
+                        <li>✅ CSRF protection</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>⚡ Quick Actions</h3>
+                    <div class="action-buttons">
+                        <button class="action-btn primary">View Profile</button>
+                        <button class="action-btn secondary">Settings</button>
+                        <button class="action-btn secondary">Help</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
